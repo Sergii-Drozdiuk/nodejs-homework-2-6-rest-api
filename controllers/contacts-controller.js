@@ -10,7 +10,7 @@ const getAll = async (req, res) => {
   if (favorite) {
     query.favorite = true;
   }
-  const result = await Contact.find(condition, '-createdAt -updatedAt', {
+  const result = await Contact.find(query, '-createdAt -updatedAt', {
     skip,
     limit,
   }).populate('owner', 'email subscription');
