@@ -22,7 +22,14 @@ const userSchema = new Schema(
       enum: ['starter', 'pro', 'business'],
       default: 'starter',
     },
-    token: String,
+    token: {
+      type: String,
+      default: '',
+    },
+    avatarURL: {
+      type: String,
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -38,10 +45,10 @@ export const userSignupSchema = Joi.object({
     .min(6)
     .required()
     .messages({ 'any.required': 'missing required password field' }),
-  email: Joi.string().pattern(emailRegexp).required().messages({
-    'any.required': 'missing required email field',
-    'string.pattern.base': 'Email is invalid',
-  }),
+  email: Joi.string()
+    .pattern(emailRegexp)
+    .required()
+    .messages({ 'any.required': 'missing required email field' }),
   subscription: Joi.string(),
 });
 
