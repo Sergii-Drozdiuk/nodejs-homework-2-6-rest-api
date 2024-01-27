@@ -68,7 +68,7 @@ describe('test /api/users/login', () => {
       .post('/api/users/login')
       .send(loginData);
 
-    expect(statusCode).toBe(200);
+    expect(statusCode).toBe(401);
     expect(body.token).toBeDefined();
 
     const user = await User.findOne({ email: loginData.email });
